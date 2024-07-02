@@ -14,12 +14,17 @@ bool Lexer::isalpha_(const char ch) {
 	return ::isalpha(ch) || ch == '_';
 }
 
-const std::array<std::string, 10> Lexer::keywords = {
+const std::array<std::string, 11> Lexer::keywords = {
 	"create",
+	"select",
+	"insert",
+	"into",
+	"values",
 	"update",
 	"delete",
 	"database",
 	"table",
+	"use",
 	"function", // function ;
 };
 

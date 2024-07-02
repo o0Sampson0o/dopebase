@@ -13,7 +13,12 @@ public:
 
 	_Check_return_ Statement* parseStmt();
 	_Check_return_ Statement* parseCreation();
+	_Check_return_ Statement* parseUseDb();
+	_Check_return_ Statement* parseInsert();
 	_Check_return_ Statement* parseDbCreation();
+	_Check_return_ Statement* parseTableCreation();
+	_Check_return_ TableColDclr* parseTableColDclr();
+	_Check_return_ TableColType* parseTableColType();
 ;
 	_Check_return_ Expr* parseExpr();
 	_Check_return_ Expr* parseAddExpr();

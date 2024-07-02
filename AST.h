@@ -2,8 +2,12 @@
 
 enum class NodeType {
 	QUERY, // Statement ;
-	CREATE_DB,
-	CREATE_TABLE,
+	DB_CREATOR,
+	TABLE_CREATOR,
+	TABLE_COL_DCLR,
+	TABLE_COL_TYPE,
+	USE_DB,
+	INSERT,
 	ASSIGNMENT, // Expression ;
 	NUMERIC_LITERAL,
 	STRING_LITERAL,
@@ -42,10 +46,52 @@ struct Query : Statement {
 };
 
 struct DbCreator : Statement {
-	DbCreator() : Statement(Type::CREATE_DB) {}
+	DbCreator() : Statement(Type::DB_CREATOR) {}
 	~DbCreator() = default;
 
 	std::string dbName;
+};
+
+struct Use : Statement {
+	Use() : Statement(Type::USE_DB) {}
+	~Use() = default;
+
+	std::string dbName;
+};
+
+struct TableColType : Statement {
+	TableColType() : Statement(Type::TABLE_COL_TYPE) {}
+	~TableColType() = default;
+
+	std::string typeName;
+	std::string attr;
+};
+
+struct TableColDclr : Statement {
+	TableColDclr() : Statement(Type::TABLE_COL_DCLR), colType{ 0 } {}
+	~TableColDclr() = default;
+
+	std::string colName;
+	TableColType* colType;
+};
+
+struct TableCreator : Statement {
+	TableCreator() : Statement(Type::TABLE_CREATOR) {}
+	~TableCreator() = default;
+
+	std::string dbName;
+	std::string tableName;
+	std::vector<TableColDclr*> cols;
+};
+
+struct Insert : Statement {
+	Insert() : Statement(Type::INSERT) {}
+	~Insert() = default;
+
+	std::string dbName;
+	std::string tableName;
+	std::vector<std::string> cols;
+	std::vector<Expr*> vals;
 };
 
 // Expression ;

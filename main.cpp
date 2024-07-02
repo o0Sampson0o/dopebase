@@ -22,8 +22,14 @@ int main() {
 		}
 
 		queryStr += '\n';
-		Query* query = interpreter.parse(queryStr);
-		RuntimeValue* value = interpreter.eval(query, globalEnv);
+
+		try {
+			Query* query = interpreter.parse(queryStr);
+			RuntimeValue* value = interpreter.eval(query, globalEnv);
+		}
+		catch (std::string error) {
+			std::println("{}", error);
+		}
 	}
 
 	return EXIT_SUCCESS;

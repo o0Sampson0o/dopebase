@@ -58,7 +58,7 @@ private:
 
 	static Lexer* p_tokenizer;
 
-	static const std::array<std::string, 10> keywords;
+	static const std::array<std::string, 11> keywords;
 	static const std::array<std::string, 4> literals;
 	static const std::array<std::string, 14> punctuators;
 	static const std::array<std::string, 16> binaryOps;
